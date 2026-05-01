@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/movies")
-public class MovieController {
-        
+@RequestMapping("/categories")
+public class CategoryController {
     @GetMapping
     public String index(HttpServletRequest request, Model model){
         model.addAttribute("uri", request.getRequestURI());
-        return "movies/index";
+        return "categories/index";
     }
 }

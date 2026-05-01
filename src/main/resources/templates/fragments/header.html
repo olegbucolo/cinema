@@ -1,0 +1,27 @@
+<th:block th:fragment="header">
+    <header class="position-fixed h-100 w-25 bg-primary">
+        <nav class="text-light h-100 p-2 d-flex flex-column justify-content-between">
+            <div class="top">
+                <div class="logo fs-3">Logo</div>
+                <div class=" my-2 ">
+                    <a th:href="@{/movies}" class="btn btn-outline-light w-100 text-start"
+                        th:classappend="${#strings.startsWith(uri, '/movies')} ? ' active' : ''">
+                        Film
+                    </a>
+                </div>
+                <div class="my-2">
+                    <a th:href="@{/categories}" class="btn btn-outline-light w-100 text-start" href=""
+                    th:classappend="${#strings.startsWith(uri, '/categories')} ? ' active' : ''">
+                        Categorie
+
+                    </a>
+                </div>
+            </div>
+            <div class="bottom w-100">
+                <!-- <form action="">
+                    <button class="btn btn-outline-light" type="submit">Logout</button>
+                </form> -->
+            </div>
+        </nav>
+    </header>
+</th:block>
