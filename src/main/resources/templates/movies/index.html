@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <th:block th:replace="~{fragments/styles :: styles}"></th:block>
     <title>Document</title>
 </head>
-<body class="bg-dark">
+
+<body class="">
     <th:block th:replace="~{fragments/header :: header}"></th:block>
-    <div>HELLO WORLD PROVA PROVA </div>
+    <main class="ps-2 bg-dark w-75 ms-auto vh-100">
+
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrizione</th>
+                    <th>Recensioni</th>
+                    <th>Prezzo</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="movie : ${movies}">
+                    <td>
+                        <a href="" th:text="${movie.title}"></a>
+                    </td>
+                    <td th:text="${movie.description}"></td>
+                    <td th:text="${movie.rating}"></td>
+                    <td th:text="${movie.price}"></td>
+                    <td>
+                        <button type="button" class="fa fa-edit btn btn-outline-dark w-auto mx-0"
+                            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
+                            data-bs-title="Modifica"></button>
+                        <button class="fa fa-trash btn btn-outline-danger w-auto mx-0" data-bs-toggle="tooltip"
+                            data-bs-custom-class="custom-tooltip" data-bs-title="Elimina"></button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-custom-class="custom-tooltip" data-bs-title="This top tooltip is themed via CSS variables.">
+            Custom tooltip
+        </button>
+
+    </main>
+    <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
 </body>
+
 </html>
