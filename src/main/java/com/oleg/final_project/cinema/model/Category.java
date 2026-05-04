@@ -23,12 +23,12 @@ public class Category {
     private Integer id;
 
     @NotBlank
-    @Size(max = 50, message = "category name should be max 50 characters")
+    @Size(max = 50, message = "La categoria deve essere max 50 lettere")
     @Column(nullable = false, length = 50)
     private String title;
 
     @NotBlank
-    @Size(max = 2000, message = "category description can contain at most 2k characters")
+    @Size(max = 2000, message = "La descrizione deve essere max 2000 lettere")
     @Column(nullable = false, length = 2000)
     private String description;
 

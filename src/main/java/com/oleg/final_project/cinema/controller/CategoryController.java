@@ -1,8 +1,5 @@
 package com.oleg.final_project.cinema.controller;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oleg.final_project.cinema.model.Category;
 import com.oleg.final_project.cinema.model.Movie;
@@ -51,7 +47,6 @@ public class CategoryController {
             HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("uri", request.getRequestURI());
-            model.addAttribute("category", new Category());
             return "categories/create";
         }
         categoryService.save(category);
@@ -68,7 +63,7 @@ public class CategoryController {
     @PutMapping("/{id}/update")
     public String update(@Valid @ModelAttribute Category category, BindingResult bindingResult, @PathVariable Integer id, HttpServletRequest request, Model model) {
         if(bindingResult.hasErrors()){
-            model.addAttribute("category", categoryService.findById(id).orElseThrow());
+            // model.addAttribute("category", categoryService.findById(id).orElseThrow());
             model.addAttribute("uri", request.getRequestURI());
             return "categories/update";
         }

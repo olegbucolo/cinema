@@ -14,10 +14,14 @@
             <div class="row mb-3">
                 <label class="col-4" for="title">Titolo:</label>
                 <input class="col-4" id="title" type="text" th:field="*{title}" placeholder="Scrivi il titolo della categoria...">
+                <div class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+
             </div>
             <div class="row mb-3">
                 <label class="col-4" for="description">Descrizione:</label>
                 <textarea id="description" class="col-4" rows="8" th:field="*{description}" placeholder="Scrivi una descrizione per la categoria..."> </textarea>
+                <div class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+
             </div>
             <button class="btn btn-success" type="submit">Salva</button>
         </form>

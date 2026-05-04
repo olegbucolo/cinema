@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <th:block th:replace="~{fragments/styles :: styles}"></th:block>
     <title>Category update</title>
 </head>
+
 <body class="bg-dark">
     <th:block th:replace="~{fragments/header :: header}"></th:block>
     <main class="text-light bg-dark w-75 ms-auto vh-100 p-5">
@@ -13,16 +15,19 @@
             <div class="row mb-3">
                 <label class="col-4" for="title">Nome</label>
                 <input class="col-4" id="title" type="text" th:field="*{title}">
+                <div class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
             </div>
             <div class="row mb-3">
                 <label class="col-4" for="description">Descrizione</label>
                 <textarea class="col-4" id="description" rows="8" type="text" th:field="*{description}"></textarea>
+                <div class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
             </div>
             <input type="hidden" name="_method" value="PUT">
             <button class="btn btn-success" type="submit">Salva</button>
         </form>
     </main>
     <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
-    
+
 </body>
+
 </html>
