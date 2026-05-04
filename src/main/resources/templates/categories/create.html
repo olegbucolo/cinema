@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:repalce="~{fragments/styles :: styles}"></th:block>
+    <title>Document</title>
+</head>
+<body>
+    <th:block th:repalce="~{fragments/header :: header}"></th:block>
+    <h1 class="text-light">Create new Category of Movies</h1>
+    <main class="ps-2 bg-dark w-75 ms-auto vh-100">
+        <form th:action="@{'/categories/create'}" method="POST" th:object="${category}">
+            <div>
+                <label for="title">Titolo:</label>
+                <input id="title" type="text" th:field="*{title}">
+            </div>
+            <div>
+                <label for="description">Descrizione:</label>
+                <input id="description" type="text" th:field="*{description}">
+            </div>
+            <button type="submit">Salva</button>
+        </form>
+    </main>
+    <th:block th:repalce="~{fragments/scripts :: scripts}"></th:block>
+    
+</body>
+</html>

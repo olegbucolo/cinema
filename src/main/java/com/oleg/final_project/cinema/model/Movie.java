@@ -1,12 +1,17 @@
 package com.oleg.final_project.cinema.model;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
@@ -33,16 +38,24 @@ public class Movie {
     private String description;
 
     @NotNull
-    @DecimalMin("0.0")
-    @DecimalMax("10.0")
-    @Column(nullable = false)
-    private Double rating;
+    @DecimalMin(value = "0.0", message = "value has to be betwen 0 and 10")
+    @DecimalMax(value = "10.0", message = "value has to be betwen 0 and 10")
+    @Digits(integer = 2, fraction = 1)
+    @Column(nullable = false, precision = 3, scale = 1)
+    private BigDecimal rating;
 
     @NotNull
     @DecimalMin(value = "0.01", message = "il prezzo deve essere maggiore di 0")
     @Digits(integer = 8, fraction = 2)
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
+
+    @ManyToMany
+    @JoinTable(name = "movie_category", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
+
+    public Movie() {
+    };
 
     public Integer getId() {
         return id;
@@ -68,11 +81,11 @@ public class Movie {
         this.description = description;
     }
 
-    public Double getRating() {
+    public BigDecimal getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(BigDecimal rating) {
         this.rating = rating;
     }
 
@@ -82,6 +95,27 @@ public class Movie {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o) return true;
+        if(!(o instanceof Movie)) return false;
+        Movie movie = (Movie) o;
+        return id != null && id.equals(movie.getId());
+    }
+
+    @Override
+    public int hashCode(){
+        return getClass().hashCode();
     }
 
     @Override

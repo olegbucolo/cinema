@@ -9,6 +9,7 @@
 <body class="">
     <th:block th:replace="~{fragments/header :: header}"></th:block>
     <main class="ps-2 bg-dark w-75 ms-auto vh-100">
+        <h1 class="text-light fw-light">Home stuff</h1>
 
         <table class="table table-striped">
             <thead class="table-dark">
@@ -39,11 +40,9 @@
 
             </tbody>
         </table>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
-            data-bs-custom-class="custom-tooltip" data-bs-title="This top tooltip is themed via CSS variables.">
-            Custom tooltip
-        </button>
-
+        <div class="position-fixed m-4 end-0 bottom-0 ">
+            <form th:action="@{'/movies/create'}"><button type="submit" class="btn btn-outline-light bg-primary fa fa-plus border-0 fs-1 p-2 py-1" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-title="Aggiungi Film"></button></form>
+        </div>
     </main>
     <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
 </body>

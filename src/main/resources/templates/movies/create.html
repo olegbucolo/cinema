@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:replace="~{fragments/styles :: styles}"></th:block>
+    <title>Document</title>
+</head>
+
+<body>
+    <th:block th:replace="~{fragments/header :: header}"></th:block>
+
+    <main class="ps-2 bg-dark w-75 ms-auto vh-100">
+        <h1 class="text-light fw-light">Home stuff</h1>
+        <form class="text-light" th:action="@{'/movies/create'}" method="POST" th:object="${movie}">
+            <div>
+                <label for="title">Titolo:</label>
+                <input id="title" type="text" th:field="*{title}">
+            </div>
+            <div>
+                <label for="description">Descrizione:</label>
+                <input id="description" th:field="*{description}" type="text">
+            </div>
+            <div>
+                <label for="rating" >Rating:</label>
+                <input id="rating" type="number" th:field="*{rating}">
+            </div>
+            <div>
+                <label for="price">Prezzo:</label>
+                <input id="price" type="number" th:field="*{price}">
+            </div>
+            <button>Salva</button>
+        </form>
+    </main>
+    <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
+</body>
+
+</html>

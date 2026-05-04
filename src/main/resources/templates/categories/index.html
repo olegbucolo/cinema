@@ -8,7 +8,30 @@
 
 <body class="bg-dark">
     <th:block th:replace="~{fragments/header :: header}"></th:block>
-    <div>HELLO WORLD PROVA PROVA </div>
+    <main class="ps-2 bg-dark w-75 ms-auto vh-100">
+        <h1 class="text-light fw-light">Home stuff</h1>
+
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrizione</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="category : ${categories}">
+                    <td th:text="${category.title}"></td>
+                    <td th:text="${category.description}"></td>
+                    <td >
+                        <button>prova1</button>
+                        <button>prova2</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
   
 </body>
 
