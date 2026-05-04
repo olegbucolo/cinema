@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +20,7 @@ import com.oleg.final_project.cinema.model.Movie;
 import com.oleg.final_project.cinema.service.CategoryService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/categories")
@@ -45,20 +47,31 @@ public class CategoryController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute Category category) {
+    public String create(@Valid @ModelAttribute Category category, BindingResult bindingResult, Model model,
+            HttpServletRequest request) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("uri", request.getRequestURI());
+            model.addAttribute("category", new Category());
+            return "categories/create";
+        }
         categoryService.save(category);
         return "redirect:/categories";
     }
 
     @GetMapping("/{id}/update")
-    public String update(Model model, HttpServletRequest request, @PathVariable Integer id){
+    public String update(Model model, HttpServletRequest request, @PathVariable Integer id) {
         model.addAttribute("category", categoryService.findById(id).orElseThrow());
         model.addAttribute("uri", request.getRequestURI());
         return "categories/update";
     }
 
     @PutMapping("/{id}/update")
-    public String update(@PathVariable Integer id, @ModelAttribute Category category){
+    public String update(@Valid @ModelAttribute Category category, BindingResult bindingResult, @PathVariable Integer id, HttpServletRequest request, Model model) {
+        if(bindingResult.hasErrors()){
+            model.addAttribute("category", categoryService.findById(id).orElseThrow());
+            model.addAttribute("uri", request.getRequestURI());
+            return "categories/update";
+        }
         Category categoryDB = categoryService.findById(id).orElseThrow();
         categoryDB.setTitle(category.getTitle());
         categoryDB.setDescription(category.getDescription());

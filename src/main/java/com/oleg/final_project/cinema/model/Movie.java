@@ -28,24 +28,24 @@ public class Movie {
     private Integer id;
 
     @NotBlank
-    @Size(max = 100, message = "La lunghezza deve essere minore di 100 caratteri")
+    @Size(max = 100, message = "Il titolo deve essere max 100 lettere")
     @Column(nullable = false, length = 100)
     private String title;
 
     @NotBlank
-    @Size(max = 1000, message = "La lunghezza deve essere minore di 1000 caratteri")
+    @Size(max = 1000, message = "La descrizione deve essere max 1000 lettere")
     @Column(nullable = false, length = 1000)
     private String description;
 
     @NotNull
-    @DecimalMin(value = "0.0", message = "value has to be betwen 0 and 10")
-    @DecimalMax(value = "10.0", message = "value has to be betwen 0 and 10")
+    @DecimalMin(value = "0.0", message = "Il punteggio non puo essere minore di 0")
+    @DecimalMax(value = "10.0", message = "Il punteggio non puo superare 10")
     @Digits(integer = 2, fraction = 1)
     @Column(nullable = false, precision = 3, scale = 1)
     private BigDecimal rating;
 
     @NotNull
-    @DecimalMin(value = "0.01", message = "il prezzo deve essere maggiore di 0")
+    @DecimalMin(value = "0.01", message = "Il prezzo deve essere maggiore di 0.01")
     @Digits(integer = 8, fraction = 2)
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
