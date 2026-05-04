@@ -23,16 +23,31 @@
                 <tr th:each="category : ${categories}">
                     <td th:text="${category.title}"></td>
                     <td th:text="${category.description}"></td>
-                    <td >
-                        <button>prova1</button>
-                        <button>prova2</button>
+                    <td>
+                        <form class="d-inline" th:action="@{'categories/' + ${category.id} + '/update'}">
+                            <button type="submit" class="fa fa-edit btn btn-outline-dark w-auto mx-0"
+                                data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
+                                data-bs-title="Modifica"></button>
+                        </form>
+                        <form class="d-inline" th:action="@{'/categories/' + ${category.id} + '/delete'}" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="fa fa-trash btn btn-outline-danger w-auto mx-0"
+                                data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+                                data-bs-title="Elimina"></button>
+                        </form>
                     </td>
                 </tr>
             </tbody>
+
         </table>
+        <div class="position-fixed m-4 end-0 bottom-0 ">
+            <form th:action="@{'/categories/create'}"><button type="submit"
+                    class="btn btn-outline-light bg-primary fa fa-plus border-0 fs-1 p-2 py-1" data-bs-toggle="tooltip"
+                    data-bs-custom-class="custom-tooltip" data-bs-title="Aggiungi Categoria"></button></form>
+        </div>
     </main>
     <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
-  
+
 </body>
 
 </html>

@@ -28,4 +28,13 @@ public class CategoryService {
     public Optional<Category> findById(Integer integer){
         return categoryRepository.findById(integer);
     }
+
+    public void deleteById(Integer integer){
+        categoryRepository.deleteById(integer);
+    }
+
+    public void delete(Category category){
+        categoryRepository.delete(category);
+    }
+
 }

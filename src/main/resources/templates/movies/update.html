@@ -8,37 +8,37 @@
 
 <body>
     <th:block th:replace="~{fragments/header :: header}"></th:block>
-
     <main class="ps-2 bg-dark w-75 ms-auto vh-100">
-        <h1 class="text-light fw-light">Home stuff</h1>
-        <form class="text-light" th:action="@{'/movies/create'}" method="POST" th:object="${movie}">
+        <form class="text-light" th:action="@{'/movies/' + ${movie.id} + '/update'}" th:object="${movie}" method="POST">
             <div>
-                <label for="title">Titolo:</label>
+                <label for="title">Nome</label>
                 <input id="title" type="text" th:field="*{title}">
             </div>
             <div>
-                <label for="description">Descrizione:</label>
-                <input id="description" th:field="*{description}" type="text">
+                <label for="description">Descrizioine</label>
+                <input id="description" type="text" th:field="*{description}">
             </div>
             <div>
-                <label for="rating">Rating:</label>
+                <label for="rating">Punteggio</label>
                 <input id="rating" type="number" th:field="*{rating}">
             </div>
             <div>
-                <label for="price">Prezzo:</label>
+                <label for="price">Prezzo</label>
                 <input id="price" type="number" th:field="*{price}">
             </div>
-            <div >
+            <div>
                 <label th:each="category : ${categories}">
-                    <input type="checkbox" name="categoryIds" th:value="${category.id}">
+                    <input type="checkbox" name="categoryIds" th:value="${category.id}" th:checked="${movie.categories.contains(category)}">
                     <span th:text="${category.title}"></span>
                 </label>
             </div>
-
-            <button>Salva</button>
+            <input type="hidden" name="_method" value="PUT">
+            <button type="submit">SAVE</button>
         </form>
     </main>
+
     <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
+
 </body>
 
 </html>

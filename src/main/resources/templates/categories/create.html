@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <th:block th:repalce="~{fragments/styles :: styles}"></th:block>
+    <th:block th:replace="~{fragments/styles :: styles}"></th:block>
     <title>Document</title>
 </head>
-<body>
-    <th:block th:repalce="~{fragments/header :: header}"></th:block>
-    <h1 class="text-light">Create new Category of Movies</h1>
+
+<body class="bg-dark">
+    <th:block th:replace="~{fragments/header :: header}"></th:block>
     <main class="ps-2 bg-dark w-75 ms-auto vh-100">
+        <h1 class="text-light fw-light">Create una nuova categoria</h1>
         <form th:action="@{'/categories/create'}" method="POST" th:object="${category}">
             <div>
                 <label for="title">Titolo:</label>
@@ -20,7 +22,8 @@
             <button type="submit">Salva</button>
         </form>
     </main>
-    <th:block th:repalce="~{fragments/scripts :: scripts}"></th:block>
-    
+    <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
+
 </body>
+
 </html>
