@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +22,7 @@ import com.oleg.final_project.cinema.service.CategoryService;
 import com.oleg.final_project.cinema.service.MovieService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/movies")
@@ -44,7 +46,7 @@ public class MovieController {
     }
 
     @GetMapping("/create")
-    public String craete(HttpServletRequest request, Model model) {
+    public String create(HttpServletRequest request, Model model) {
         model.addAttribute("uri", request.getRequestURI());
         model.addAttribute("movie", new Movie());
         model.addAttribute("categories", categoryService.findAll());
@@ -52,8 +54,14 @@ public class MovieController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute Movie movie, @RequestParam(required = false) List<Integer> categoryIds) {
-        movieService.save(movie);
+    public String create(@Valid @ModelAttribute Movie movie, BindingResult bindingResult,
+            @RequestParam(required = false) List<Integer> categoryIds, Model model, HttpServletRequest request) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("categories", categoryService.findAll());
+            model.addAttribute("uri", request.getRequestURI());
+            return "movies/create";
+        }
+
         Set<Category> categories = new HashSet<>();
 
         if (categoryIds != null) {
@@ -76,32 +84,36 @@ public class MovieController {
         return "movies/update";
     }
 
-    @DeleteMapping("/{id}/delete")
-    public String delete(@PathVariable Integer id){
-        if(id != null){
-            movieService.deleteById(id);
-        }
-        return "redirect:/movies";
-    }
-
     @PutMapping("/{id}/update")
-    public String update(@PathVariable Integer id, @RequestParam(required = false) List<Integer> categoryIds,
-            @ModelAttribute Movie movie) {
+    public String update(@Valid @ModelAttribute Movie movie, BindingResult bindingResult, @PathVariable Integer id,
+            @RequestParam(required = false) List<Integer> categoryIds, Model model, HttpServletRequest request) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("uri", request.getRequestURI());
+            model.addAttribute("categories", categoryService.findAll());
+            return "movies/update";
+        }
+
         Movie movieFromDB = movieService.findById(id).orElseThrow();
         Set<Category> categories = new HashSet<>();
 
-        if (categoryIds != null ) {
+        if (categoryIds != null) {
             for (Integer categoryId : categoryIds) {
                 categories.add(categoryService.findById(categoryId).orElseThrow());
             }
         }
-        movieFromDB.setId(id);
         movieFromDB.setDescription(movie.getDescription());
         movieFromDB.setTitle(movie.getTitle());
         movieFromDB.setPrice(movie.getPrice());
         movieFromDB.setRating(movie.getRating());
         movieFromDB.setCategories(categories);
         movieService.save(movieFromDB);
+        return "redirect:/movies";
+    }
+
+    @DeleteMapping("/{id}/delete")
+    public String delete(@PathVariable Integer id) {
+        movieService.deleteById(id);
         return "redirect:/movies";
     }
 }
