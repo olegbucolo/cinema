@@ -8,27 +8,30 @@
 
 <body>
     <th:block th:replace="~{fragments/header :: header}"></th:block>
-    <main class="ps-2 bg-dark w-75 ms-auto vh-100">
+    <main class="bg-dark w-75 ms-auto vh-100 p-5">
+        <h1 class="text-light fw-light">Aggiorna film</h1>
+
         <form class="text-light" th:action="@{'/movies/' + ${movie.id} + '/update'}" th:object="${movie}" method="POST">
-            <div>
-                <label for="title">Nome</label>
-                <input id="title" type="text" th:field="*{title}">
+            <div class="row mb-3">
+                <label class="col-4" for="title">Nome</label>
+                <input class="col-4" id="title" type="text" th:field="*{title}">
             </div>
-            <div>
-                <label for="description">Descrizioine</label>
-                <input id="description" type="text" th:field="*{description}">
+            <div class="row mb-3">
+                <label class="col-4" for="description">Descrizioine</label>
+                <textarea class="col-4" id="description" type="text" rows="8" th:field="*{description}"></textarea>
             </div>
-            <div>
-                <label for="rating">Punteggio</label>
-                <input id="rating" type="number" th:field="*{rating}">
+            <div class="row mb-3">
+                <label class="col-4" for="rating">Punteggio</label>
+                <input class="col-4" id="rating" type="number" th:field="*{rating}">
             </div>
-            <div>
-                <label for="price">Prezzo</label>
-                <input id="price" type="number" th:field="*{price}">
+            <div class="row mb-3">
+                <label class="col-4" for="price">Prezzo</label>
+                <input class="col-4" id="price" type="number" th:field="*{price}">
             </div>
-            <div>
-                <label th:each="category : ${categories}">
-                    <input type="checkbox" name="categoryIds" th:value="${category.id}" th:checked="${movie.categories.contains(category)}">
+            <div class="row mb-3">
+                <label class="col-4 w-25" th:each="category : ${categories}">
+                    <input type="checkbox" name="categoryIds" th:value="${category.id}"
+                        th:checked="${movie.categories.contains(category)}">
                     <span th:text="${category.title}"></span>
                 </label>
             </div>

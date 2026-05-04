@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oleg.final_project.cinema.model.Category;
 import com.oleg.final_project.cinema.model.Movie;
@@ -45,6 +47,23 @@ public class CategoryController {
     @PostMapping("/create")
     public String create(@ModelAttribute Category category) {
         categoryService.save(category);
+        return "redirect:/categories";
+    }
+
+    @GetMapping("/{id}/update")
+    public String update(Model model, HttpServletRequest request, @PathVariable Integer id){
+        model.addAttribute("category", categoryService.findById(id).orElseThrow());
+        model.addAttribute("uri", request.getRequestURI());
+        return "categories/update";
+    }
+
+    @PutMapping("/{id}/update")
+    public String update(@PathVariable Integer id, @ModelAttribute Category category){
+        Category categoryDB = categoryService.findById(id).orElseThrow();
+        categoryDB.setTitle(category.getTitle());
+        categoryDB.setDescription(category.getDescription());
+        categoryDB.setId(category.getId());
+        categoryService.save(categoryDB);
         return "redirect:/categories";
     }
 

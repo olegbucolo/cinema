@@ -1,8 +1,9 @@
 <th:block th:fragment="header">
     <header class="position-fixed h-100 w-25 bg-primary">
-        <nav class="text-light h-100 p-2 d-flex flex-column justify-content-between">
+        <nav class="text-light h-100 p-2 py-5 d-flex flex-column justify-content-between">
             <div class="top">
-                <div class="logo fs-3">Admin Panel</div>
+                <h1 class="text-light fw-light">Pannello Admin</h1>
+
                 <div class=" my-2 ">
                     <a th:href="@{/movies}" class="btn btn-outline-light w-100 text-start"
                         th:classappend="${#strings.startsWith(uri, '/movies')} ? ' active' : ''">
@@ -11,7 +12,7 @@
                 </div>
                 <div class="my-2">
                     <a th:href="@{/categories}" class="btn btn-outline-light w-100 text-start" href=""
-                    th:classappend="${#strings.startsWith(uri, '/categories')} ? ' active' : ''">
+                        th:classappend="${#strings.startsWith(uri, '/categories')} ? ' active' : ''">
                         Categorie
 
                     </a>

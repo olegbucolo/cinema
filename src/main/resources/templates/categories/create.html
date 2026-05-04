@@ -8,18 +8,18 @@
 
 <body class="bg-dark">
     <th:block th:replace="~{fragments/header :: header}"></th:block>
-    <main class="ps-2 bg-dark w-75 ms-auto vh-100">
+    <main class="text-light p-2 bg-dark w-75 ms-auto vh-100 px-5">
         <h1 class="text-light fw-light">Create una nuova categoria</h1>
         <form th:action="@{'/categories/create'}" method="POST" th:object="${category}">
-            <div>
-                <label for="title">Titolo:</label>
-                <input id="title" type="text" th:field="*{title}">
+            <div class="row mb-3">
+                <label class="col-4" for="title">Titolo:</label>
+                <input class="col-4" id="title" type="text" th:field="*{title}" placeholder="Scrivi il titolo della categoria...">
             </div>
-            <div>
-                <label for="description">Descrizione:</label>
-                <input id="description" type="text" th:field="*{description}">
+            <div class="row mb-3">
+                <label class="col-4" for="description">Descrizione:</label>
+                <textarea id="description" class="col-4" rows="8" th:field="*{description}" placeholder="Scrivi una descrizione per la categoria..."> </textarea>
             </div>
-            <button type="submit">Salva</button>
+            <button class="btn btn-success" type="submit">Salva</button>
         </form>
     </main>
     <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>

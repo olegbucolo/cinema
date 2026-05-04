@@ -9,33 +9,42 @@
 <body>
     <th:block th:replace="~{fragments/header :: header}"></th:block>
 
-    <main class="ps-2 bg-dark w-75 ms-auto vh-100">
-        <h1 class="text-light fw-light">Home stuff</h1>
-        <form class="text-light" th:action="@{'/movies/create'}" method="POST" th:object="${movie}">
-            <div>
-                <label for="title">Titolo:</label>
-                <input id="title" type="text" th:field="*{title}">
-            </div>
-            <div>
-                <label for="description">Descrizione:</label>
-                <input id="description" th:field="*{description}" type="text">
-            </div>
-            <div>
-                <label for="rating">Rating:</label>
-                <input id="rating" type="number" th:field="*{rating}">
-            </div>
-            <div>
-                <label for="price">Prezzo:</label>
-                <input id="price" type="number" th:field="*{price}">
-            </div>
-            <div >
-                <label th:each="category : ${categories}">
-                    <input type="checkbox" name="categoryIds" th:value="${category.id}">
-                    <span th:text="${category.title}"></span>
-                </label>
+    <main class="p-2 bg-dark w-75 ms-auto vh-100 px-5">
+        <h1 class="text-light fw-light">Crea film</h1>
+        <form class="text-light w-100" th:action="@{'/movies/create'}" method="POST" th:object="${movie}">
+
+            <div class="mb-3 row">
+                <label for="title" class="col-4">Titolo:</label>
+                <input class="col-4" id="title" type="text" th:field="*{title}" placeholder="Aggiungi il nome del film">
             </div>
 
-            <button>Salva</button>
+            <div class="mb-3 row">
+                <label for="description" class="col-4">Descrizione:</label>
+                <textarea id="description" class="col-4" rows="8" th:field="*{description}" placeholder="Aggiungi la descrizione del film">
+        </textarea>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="rating" class="col-4">Rating:</label>
+                <input id="rating" class="col-4" type="number" th:field="*{rating}" placeholder="Aggiungi il punteggio del film">
+            </div>
+
+            <div class="mb-3 row">
+                <label for="price" class="col-4">Prezzo:</label>
+                <input id="price" class="col-4" type="number" th:field="*{price}" placeholder="Aggiungi il prezzo del film">
+            </div>
+
+            <div class="mb-3">
+                <label for="">Categoria:</label>
+                <div class="mt-3 d-flex flex-wrap">
+                    <label class="w-25" th:each="category : ${categories}">
+                        <input type="checkbox" name="categoryIds" th:value="${category.id}">
+                        <span th:text="${category.title}"></span>
+                    </label>
+                </div>
+            </div>
+
+            <button class="btn btn-success">Salva</button>
         </form>
     </main>
     <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
