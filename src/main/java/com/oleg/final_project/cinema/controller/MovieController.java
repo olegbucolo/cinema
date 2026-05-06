@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.oleg.final_project.cinema.model.Category;
-import com.oleg.final_project.cinema.model.Movie;
+import com.oleg.final_project.cinema.model.movie.Category;
+import com.oleg.final_project.cinema.model.movie.Movie;
 import com.oleg.final_project.cinema.service.CategoryService;
 import com.oleg.final_project.cinema.service.MovieService;
 

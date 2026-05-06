@@ -1,4 +1,4 @@
-package com.oleg.final_project.cinema.model;
+package com.oleg.final_project.cinema.model.movie;
 
 import java.util.HashSet;
 import java.util.Set;

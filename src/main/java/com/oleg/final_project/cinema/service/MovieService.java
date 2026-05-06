@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.oleg.final_project.cinema.model.Movie;
+import com.oleg.final_project.cinema.model.movie.Movie;
 import com.oleg.final_project.cinema.repository.MovieRepository;
 
 @Service
