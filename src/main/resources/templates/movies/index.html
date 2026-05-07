@@ -26,7 +26,8 @@
                     <td>
                         <a href="" th:text="${movie.title}"></a>
                     </td>
-                    <td th:text="${movie.description}"></td>
+                    <td class="text-break"
+                        th:text="${movie.description}"></td>
                     <td th:text="${movie.rating}"></td>
                     <td th:text="${movie.price}"></td>
                     <td>
@@ -37,8 +38,9 @@
                         </form>
                         <form class="d-inline" th:action="@{'/movies/' + ${movie.id} + '/delete'}" method="POST">
                             <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="fa fa-trash btn btn-outline-danger w-auto mx-0" data-bs-toggle="tooltip"
-                                data-bs-custom-class="custom-tooltip" data-bs-title="Elimina"></button>
+                            <button type="submit" class="fa fa-trash btn btn-outline-danger w-auto mx-0"
+                                data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+                                data-bs-title="Elimina"></button>
                         </form>
                     </td>
                 </tr>
@@ -46,7 +48,9 @@
             </tbody>
         </table>
         <div class="position-fixed m-4 end-0 bottom-0 ">
-            <form th:action="@{'/movies/create'}"><button type="submit" class="btn btn-outline-light bg-primary fa fa-plus border-0 fs-1 p-2 py-1" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-title="Aggiungi Film"></button></form>
+            <form th:action="@{'/movies/create'}"><button type="submit"
+                    class="btn btn-outline-light bg-primary fa fa-plus border-0 fs-1 p-2 py-1" data-bs-toggle="tooltip"
+                    data-bs-custom-class="custom-tooltip" data-bs-title="Aggiungi Film"></button></form>
         </div>
     </main>
     <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
