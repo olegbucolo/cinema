@@ -104,6 +104,7 @@ public class MovieController {
         }
         movieFromDB.setDescription(movie.getDescription());
         movieFromDB.setTitle(movie.getTitle());
+        movieFromDB.setMovieURL(movie.getMovieURL());
         movieFromDB.setPrice(movie.getPrice());
         movieFromDB.setRating(movie.getRating());
         movieFromDB.setCategories(categories);

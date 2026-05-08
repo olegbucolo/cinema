@@ -17,6 +17,11 @@
                 <input class="col-4" id="title" type="text" th:field="*{title}">
                 <div class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
             </div>
+             <div class="row mb-3">
+                <label class="col-4" for="movieURL">URL Immagine</label>
+                <input class="col-4" id="movieURL" type="text" th:field="*{movieURL}">
+                <div class="text-danger" th:if="${#fields.hasErrors('movieURL')}" th:errors="*{movieURL}"></div>
+            </div>
             <div class="row mb-3">
                 <label class="col-4" for="description">Descrizioine</label>
                 <textarea class="col-4" id="description" type="text" rows="8" th:field="*{description}"></textarea>

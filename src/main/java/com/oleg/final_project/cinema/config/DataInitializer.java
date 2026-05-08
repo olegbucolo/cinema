@@ -27,12 +27,27 @@ public class DataInitializer {
                         return roleRepository.save(r);
                     });
 
+            Role userRole = roleRepository.findByName("USER")
+                    .orElseGet(() -> {
+                        Role u = new Role();
+                        u.setName("USER");
+                        return roleRepository.save(u);
+                    });
+
             // make sure user exists
-            if(userRepository.findByUsername("admin").isEmpty()){
+            if (userRepository.findByUsername("admin").isEmpty()) {
                 User user = new User();
                 user.setUsername("admin");
-                user.setPassword(passwordEncoder.encode("12345"));
+                user.setPassword(passwordEncoder.encode("admin12345@"));
                 user.setRoles(Set.of(adminRole));
+                userRepository.save(user);
+            }
+
+            if(userRepository.findByUsername("gennaro").isEmpty()){
+                User user = new User();
+                user.setUsername("gennaro");
+                user.setPassword(passwordEncoder.encode("gennaro1234@"));
+                user.setRoles(Set.of(userRole));
                 userRepository.save(user);
             }
         };

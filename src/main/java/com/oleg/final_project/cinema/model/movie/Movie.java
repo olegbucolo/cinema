@@ -32,6 +32,9 @@ public class Movie {
     @Column(nullable = false, length = 100)
     private String title;
 
+    @Column(nullable = true, length = 500)
+    private String movieURL;
+
     @NotBlank
     @Size(max = 1000, message = "La descrizione deve essere max 1000 lettere")
     @Column(nullable = false, length = 1000)
@@ -73,6 +76,14 @@ public class Movie {
         this.title = title;
     }
 
+    public String getMovieURL() {
+        return movieURL;
+    }
+
+    public void setMovieURL(String movieURL) {
+        this.movieURL = movieURL;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -106,15 +117,17 @@ public class Movie {
     }
 
     @Override
-    public boolean equals(Object o){
-        if(this == o) return true;
-        if(!(o instanceof Movie)) return false;
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof Movie))
+            return false;
         Movie movie = (Movie) o;
         return id != null && id.equals(movie.getId());
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return getClass().hashCode();
     }
 

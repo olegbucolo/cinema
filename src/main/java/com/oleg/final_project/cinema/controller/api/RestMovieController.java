@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,5 +24,10 @@ public class RestMovieController {
     @GetMapping
     public List<Movie> index() {
         return movieService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Movie show(@PathVariable Integer id){
+        return movieService.findById(id).orElseThrow();
     }
 }
