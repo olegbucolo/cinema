@@ -12,7 +12,9 @@ import com.oleg.final_project.cinema.model.movie.Movie;
 import com.oleg.final_project.cinema.service.MovieService;
 
 @RestController
-@CrossOrigin(origins = "https://cinema-frontend-seven.vercel.app")
+@CrossOrigin(origins = {
+        "https://cinema-frontend-seven.vercel.app",
+        "http://localhost:5173" })
 @RequestMapping("/api/movies")
 public class RestMovieController {
     private final MovieService movieService;
@@ -27,7 +29,7 @@ public class RestMovieController {
     }
 
     @GetMapping("/{id}")
-    public Movie show(@PathVariable Integer id){
+    public Movie show(@PathVariable Integer id) {
         return movieService.findById(id).orElseThrow();
     }
 }

@@ -12,23 +12,25 @@ import com.oleg.final_project.cinema.model.movie.Category;
 import com.oleg.final_project.cinema.service.CategoryService;
 
 @RestController
-@CrossOrigin(origins = "https://cinema-frontend-seven.vercel.app")
+@CrossOrigin(origins = {
+        "https://cinema-frontend-seven.vercel.app",
+        "http://localhost:5173" })
 @RequestMapping("/api/categories")
 public class RestCategoriesController {
 
     private final CategoryService categoryService;
 
-    public RestCategoriesController(CategoryService categoryService){
+    public RestCategoriesController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
     @GetMapping
-    public List<Category> index(){
+    public List<Category> index() {
         return categoryService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Category show(@PathVariable Integer id){
+    public Category show(@PathVariable Integer id) {
         return categoryService.findById(id).orElseThrow();
     }
 }
