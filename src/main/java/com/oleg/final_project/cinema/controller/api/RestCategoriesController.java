@@ -12,7 +12,7 @@ import com.oleg.final_project.cinema.model.movie.Category;
 import com.oleg.final_project.cinema.service.CategoryService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://cinema-lhjy.onrender.com")
 @RequestMapping("/api/categories")
 public class RestCategoriesController {
 
