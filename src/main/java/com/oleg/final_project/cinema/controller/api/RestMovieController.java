@@ -12,7 +12,7 @@ import com.oleg.final_project.cinema.model.movie.Movie;
 import com.oleg.final_project.cinema.service.MovieService;
 
 @RestController
-@CrossOrigin(origins = "https://cinema-lhjy.onrender.com")
+@CrossOrigin(origins = "https://cinema-frontend-seven.vercel.app/")
 @RequestMapping("/api/movies")
 public class RestMovieController {
     private final MovieService movieService;
