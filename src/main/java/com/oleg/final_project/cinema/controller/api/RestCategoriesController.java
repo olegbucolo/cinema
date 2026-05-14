@@ -12,7 +12,7 @@ import com.oleg.final_project.cinema.model.movie.Category;
 import com.oleg.final_project.cinema.service.CategoryService;
 
 @RestController
-@CrossOrigin(origins = "https://cinema-frontend-seven.vercel.app/")
+@CrossOrigin(origins = "https://cinema-frontend-seven.vercel.app")
 @RequestMapping("/api/categories")
 public class RestCategoriesController {
 
